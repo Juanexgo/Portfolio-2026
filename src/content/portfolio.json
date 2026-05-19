@@ -1,0 +1,711 @@
+{
+  "personal": {
+    "name": "Juan Canul",
+    "initials": "JC",
+    "role": "Full Stack Software Engineer",
+    "tagline": "Building scalable enterprise systems, healthcare platforms and modern operational software.",
+    "location": "Remote · LATAM",
+    "email": "hello@juancanul.dev",
+    "resumeUrl": "/resume.pdf",
+    "availability": "Focused on scalable product engineering."
+  },
+  "nav": {
+    "brand": "Juan Canul",
+    "brandSuffix": "/ Software Engineer",
+    "initials": "JC",
+    "cta": {
+      "label": "Get in touch",
+      "href": "#contact",
+      "variant": "outline",
+      "icon": "ArrowUpRight"
+    },
+    "items": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Experience",
+        "href": "#experience"
+      },
+      {
+        "label": "Projects",
+        "href": "#projects"
+      },
+      {
+        "label": "Architecture",
+        "href": "#architecture"
+      },
+      {
+        "label": "Stack",
+        "href": "#stack"
+      }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Focused on scalable product engineering",
+    "title": "Juan Canul",
+    "subtitle": "Full Stack Software Engineer",
+    "description": "Building scalable enterprise systems, healthcare platforms and modern operational software — focused on performance, architecture and real-time experiences.",
+    "ctas": [
+      {
+        "label": "View Projects",
+        "href": "#projects",
+        "variant": "primary",
+        "icon": "ArrowUpRight"
+      },
+      {
+        "label": "Download Resume",
+        "href": "/resume.pdf",
+        "variant": "outline",
+        "icon": "Download",
+        "external": true
+      },
+      {
+        "label": "Contact",
+        "href": "#contact",
+        "variant": "ghost",
+        "icon": "Mail"
+      }
+    ],
+    "stackPills": [
+      "Next.js",
+      "TypeScript",
+      "NestJS",
+      "PostgreSQL",
+      "Socket.IO",
+      "Prisma"
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Engineer focused on the systems that businesses run on.",
+    "description": "I design and build the layers that operations teams, clinicians and customers rely on every day — from the data model all the way to the pixels. My focus is the long-term shape of a system: where it scales, where it breaks, and how it stays maintainable.",
+    "focusAreas": [
+      {
+        "icon": "Layers",
+        "title": "Enterprise Systems",
+        "body": "Complex, multi-tenant platforms with strong RBAC, audit trails and predictable performance under load."
+      },
+      {
+        "icon": "HeartPulse",
+        "title": "Healthcare Platforms",
+        "body": "HIPAA-aware clinical workflows: patient records, scheduling, prescriptions and clinician-friendly UX."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Operational Software",
+        "body": "POS, inventory, service orders and back-office tooling that real teams depend on every day."
+      },
+      {
+        "icon": "Activity",
+        "title": "Realtime Systems",
+        "body": "WebSocket-driven dashboards, presence, live updates and event-driven backend pipelines."
+      },
+      {
+        "icon": "Cpu",
+        "title": "Scalable Architecture",
+        "body": "Modular services, queue-backed jobs, cache layers and database design that scales horizontally."
+      },
+      {
+        "icon": "Code2",
+        "title": "Frontend Engineering",
+        "body": "Type-safe React systems, design tokens, accessible components and performance-first rendering."
+      },
+      {
+        "icon": "Database",
+        "title": "Backend Architecture",
+        "body": "NestJS services, domain modeling with Prisma/PostgreSQL, observability and clean API contracts."
+      },
+      {
+        "icon": "Boxes",
+        "title": "Product Thinking",
+        "body": "Shipping software that solves operational pain — not features. Tight feedback loops with end users."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Building systems that real operations depend on.",
+    "description": "A timeline of the work I've shipped across enterprise, healthcare and operational software — with the architecture decisions and outcomes behind it.",
+    "roles": [
+      {
+        "company": "Immersive Softworks",
+        "role": "Full Stack Software Engineer",
+        "period": "2025 — Present",
+        "location": "Remote · Guadalajara",
+        "current": true,
+        "summary": "Lead full-stack engineer on enterprise-grade operational and healthcare platforms. Own architecture, data modeling, realtime infrastructure and design systems across multiple products.",
+        "highlights": [
+          "Designed multi-tenant architecture with RBAC, audit logging and granular policy enforcement.",
+          "Built realtime WebSocket layer powering live dashboards, presence and operational telemetry.",
+          "Migrated monolithic flows to a NestJS service architecture backed by PostgreSQL and Prisma.",
+          "Standardized a typed design system (shadcn/ui + Tailwind tokens) reused across 3 products."
+        ],
+        "metrics": [
+          {
+            "label": "Avg. p95 latency",
+            "value": "84 ms"
+          },
+          {
+            "label": "Realtime sessions",
+            "value": "12K+"
+          },
+          {
+            "label": "Services owned",
+            "value": "8"
+          }
+        ],
+        "stack": [
+          "Next.js",
+          "NestJS",
+          "TypeScript",
+          "PostgreSQL",
+          "Prisma",
+          "Socket.IO",
+          "Docker"
+        ]
+      },
+      {
+        "company": "IMSS — Instituto Mexicano del Seguro Social",
+        "role": "Software Engineer · Health Systems",
+        "period": "2023 — 2024",
+        "location": "Mexico",
+        "summary": "Contributed to internal healthcare and operational systems used across public health facilities. Focused on reliability, data integrity and clinician-facing tooling.",
+        "highlights": [
+          "Implemented patient workflow modules with strict validation and audit trails.",
+          "Optimized data ingestion pipelines, reducing batch processing windows significantly.",
+          "Collaborated with clinical staff to translate operational pain into product requirements.",
+          "Hardened legacy modules with type-safe contracts and automated testing."
+        ],
+        "metrics": [
+          {
+            "label": "Modules shipped",
+            "value": "6"
+          },
+          {
+            "label": "Data integrity",
+            "value": "99.9%"
+          },
+          {
+            "label": "Users served",
+            "value": "1K+"
+          }
+        ],
+        "stack": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "REST APIs"
+        ]
+      },
+      {
+        "company": "Centro de Servicio Multimarcas",
+        "role": "Software Engineer · Operations Platform",
+        "period": "2022 — 2023",
+        "location": "Mexico",
+        "summary": "Designed and shipped the in-house service management platform handling work orders, technicians, inventory and customer communications for an automotive multi-brand service center.",
+        "highlights": [
+          "Built the service order lifecycle: intake, diagnosis, parts, labor, invoicing and delivery.",
+          "Integrated inventory and parts catalog with realtime stock movements.",
+          "Implemented role-scoped dashboards for advisors, technicians and management.",
+          "Reduced order processing time by replacing manual paperwork with an end-to-end digital flow."
+        ],
+        "metrics": [
+          {
+            "label": "Orders / month",
+            "value": "800+"
+          },
+          {
+            "label": "Roles supported",
+            "value": "5"
+          },
+          {
+            "label": "Process time",
+            "value": "−42%"
+          }
+        ],
+        "stack": [
+          "Next.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Tailwind",
+          "REST APIs"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Selected work",
+    "title": "Projects engineered for operations.",
+    "description": "Three production systems that show how I think about architecture, realtime flows, RBAC, audit and the day-to-day reliability that operations teams actually need.",
+    "projects": [
+      {
+        "id": "mediflow",
+        "name": "MediFlow",
+        "tagline": "Modern healthcare platform",
+        "description": "Clinical operations platform for medical practices: patient records, appointments, prescriptions, and provider workflows — built for compliance, auditability and clinician speed.",
+        "icon": "HeartPulse",
+        "tone": "rose",
+        "span": "lg:col-span-7 lg:row-span-2",
+        "featured": true,
+        "capabilities": [
+          {
+            "icon": "ShieldCheck",
+            "label": "Granular RBAC"
+          },
+          {
+            "icon": "ScrollText",
+            "label": "Audit logs"
+          },
+          {
+            "icon": "Radio",
+            "label": "Realtime sync"
+          },
+          {
+            "icon": "Lock",
+            "label": "Encrypted PII"
+          }
+        ],
+        "architecture": [
+          "NestJS modular monolith with bounded contexts per clinical domain",
+          "PostgreSQL with Prisma; row-level policies enforce tenant + role scope",
+          "WebSocket gateway for live appointment + record updates",
+          "Background workers for reminders, exports and integration jobs"
+        ],
+        "challenges": [
+          "Designing an audit trail that's both clinician-readable and immutable.",
+          "Schema evolution without downtime on multi-tenant data.",
+          "Latency budget: keep critical screens under 100ms p95."
+        ],
+        "stack": [
+          "Next.js",
+          "NestJS",
+          "PostgreSQL",
+          "Prisma",
+          "Socket.IO",
+          "Tailwind"
+        ],
+        "liveUrl": "https://med-sistem-web.vercel.app/",
+        "repoUrl": "https://github.com/Juanexgo/MedSistem"
+      },
+      {
+        "id": "csm",
+        "name": "Centro de Servicio Multimarcas",
+        "tagline": "Service ops platform",
+        "description": "End-to-end service order platform for a multi-brand automotive center. Handles intake, diagnosis, parts, labor, technicians, customers and invoicing in one operational system.",
+        "icon": "Wrench",
+        "tone": "amber",
+        "span": "lg:col-span-5 lg:row-span-1",
+        "capabilities": [
+          {
+            "icon": "Workflow",
+            "label": "Order lifecycle"
+          },
+          {
+            "icon": "ClipboardList",
+            "label": "Inventory"
+          },
+          {
+            "icon": "ShieldCheck",
+            "label": "Role-scoped UI"
+          },
+          {
+            "icon": "Radio",
+            "label": "Live status"
+          }
+        ],
+        "architecture": [
+          "Next.js App Router with server components for heavy ops views",
+          "State machine modeling order transitions and side-effects",
+          "Postgres with strict referential integrity on parts movements"
+        ],
+        "challenges": [
+          "Modeling messy real-world service flows without locking the business in.",
+          "Inventory accuracy under concurrent technician updates."
+        ],
+        "stack": [
+          "Next.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Tailwind"
+        ],
+        "liveUrl": "https://pos-cuchitas.vercel.app/sign-in",
+        "repoUrl": "https://github.com/Juanexgo/POS-Cuchitas"
+      },
+      {
+        "id": "pos",
+        "name": "Enterprise POS & Inventory",
+        "tagline": "Multi-location commerce",
+        "description": "Operational POS and inventory system designed for multi-location businesses. Realtime stock movements, role-scoped registers, refunds, returns and end-of-day reconciliation built in.",
+        "icon": "Server",
+        "tone": "sky",
+        "span": "lg:col-span-5 lg:row-span-1",
+        "capabilities": [
+          {
+            "icon": "Zap",
+            "label": "Sub-second checkout"
+          },
+          {
+            "icon": "ShieldCheck",
+            "label": "Cashier RBAC"
+          },
+          {
+            "icon": "ScrollText",
+            "label": "Audit trail"
+          },
+          {
+            "icon": "Radio",
+            "label": "Realtime stock"
+          }
+        ],
+        "architecture": [
+          "NestJS services behind an API gateway with per-location scoping",
+          "Event-driven inventory updates over WebSocket + persisted log",
+          "Offline-tolerant register flow with reconciliation on reconnect"
+        ],
+        "challenges": [
+          "Reconciling local register state with the central source of truth.",
+          "Performance budget on low-end terminal hardware."
+        ],
+        "stack": [
+          "Next.js",
+          "NestJS",
+          "PostgreSQL",
+          "Socket.IO",
+          "Docker"
+        ]
+      }
+    ]
+  },
+  "architecture": {
+    "eyebrow": "System architecture",
+    "title": "The layers behind every product I ship.",
+    "description": "A reference architecture for the realtime, multi-tenant systems I design — built for clean boundaries, strong auth, predictable scaling and operational observability.",
+    "layers": [
+      {
+        "label": "Edge / CDN",
+        "color": "muted",
+        "nodes": [
+          {
+            "icon": "Globe",
+            "label": "CDN · TLS · Cache"
+          }
+        ]
+      },
+      {
+        "label": "Frontend",
+        "color": "primary",
+        "nodes": [
+          {
+            "icon": "Layers",
+            "label": "Next.js App Router"
+          },
+          {
+            "icon": "Layers",
+            "label": "React Server Components"
+          },
+          {
+            "icon": "Layers",
+            "label": "Design System (shadcn/ui)"
+          }
+        ]
+      },
+      {
+        "label": "API Gateway",
+        "color": "primary",
+        "nodes": [
+          {
+            "icon": "Server",
+            "label": "Rate limiting"
+          },
+          {
+            "icon": "ShieldCheck",
+            "label": "Authn / Authz"
+          },
+          {
+            "icon": "Workflow",
+            "label": "Request routing"
+          }
+        ]
+      },
+      {
+        "label": "Services",
+        "color": "primary",
+        "nodes": [
+          {
+            "icon": "Server",
+            "label": "NestJS — Auth"
+          },
+          {
+            "icon": "Server",
+            "label": "NestJS — Domain"
+          },
+          {
+            "icon": "Server",
+            "label": "NestJS — Ops"
+          }
+        ]
+      },
+      {
+        "label": "Realtime",
+        "color": "accent",
+        "nodes": [
+          {
+            "icon": "Radio",
+            "label": "WebSocket gateway · presence · pub/sub"
+          }
+        ]
+      },
+      {
+        "label": "Data",
+        "color": "muted",
+        "nodes": [
+          {
+            "icon": "Database",
+            "label": "PostgreSQL · Prisma"
+          },
+          {
+            "icon": "Database",
+            "label": "Redis · cache + queues"
+          },
+          {
+            "icon": "KeyRound",
+            "label": "Secrets · KMS"
+          }
+        ]
+      }
+    ],
+    "legend": [
+      {
+        "dotClassName": "bg-primary",
+        "label": "Synchronous request"
+      },
+      {
+        "dotClassName": "bg-emerald-400",
+        "label": "WebSocket stream"
+      },
+      {
+        "dotClassName": "bg-amber-400",
+        "label": "Background job"
+      },
+      {
+        "dotClassName": "bg-sky-400",
+        "label": "Data persistence"
+      }
+    ]
+  },
+  "principles": {
+    "eyebrow": "Engineering principles",
+    "title": "How I approach the work.",
+    "description": "The values that shape how I scope, design and ship software — distilled from years of shipping production systems with real users behind them.",
+    "principles": [
+      {
+        "icon": "Network",
+        "title": "Scalable architecture",
+        "body": "Design for the boundary, not the function. Clear domains, typed contracts and infrastructure that scales horizontally before it has to."
+      },
+      {
+        "icon": "Radio",
+        "title": "Realtime systems",
+        "body": "WebSockets, presence, eventual consistency and reconciliation flows. The system should feel alive without becoming unpredictable."
+      },
+      {
+        "icon": "Lock",
+        "title": "Security by default",
+        "body": "Authn/authz at the edge, RBAC enforced at the service, encryption at rest and audit trails wired in from day one — not bolted on."
+      },
+      {
+        "icon": "Wrench",
+        "title": "Maintainability",
+        "body": "Code that the next engineer can actually own. Strong types, small modules, deliberate abstractions and tests that capture behavior, not implementation."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Performance budget",
+        "body": "Treat latency as a feature. Measure p95, optimize hot paths, cache deliberately and ship boring infrastructure before clever solutions."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Premium UX",
+        "body": "Operational software deserves great UX. Information density, keyboard ergonomics, accessibility and motion that earns its place."
+      },
+      {
+        "icon": "Compass",
+        "title": "Product engineering",
+        "body": "Talk to the people who actually use the system. Ship the thing that removes their friction — not the thing that's interesting to build."
+      }
+    ]
+  },
+  "techStack": {
+    "eyebrow": "Tech stack",
+    "title": "The tools I reach for.",
+    "description": "A pragmatic, modern toolchain optimized for type-safe full-stack development, realtime systems and shipping production software with a small team.",
+    "categories": [
+      {
+        "label": "Frontend",
+        "items": [
+          {
+            "name": "Next.js",
+            "note": "App Router · RSC"
+          },
+          {
+            "name": "React",
+            "note": "Hooks · Suspense"
+          },
+          {
+            "name": "TypeScript",
+            "note": "Strict mode"
+          },
+          {
+            "name": "Tailwind",
+            "note": "Tokens · variants"
+          },
+          {
+            "name": "shadcn/ui",
+            "note": "Composable"
+          },
+          {
+            "name": "Framer Motion",
+            "note": "Subtle motion"
+          }
+        ]
+      },
+      {
+        "label": "Backend",
+        "items": [
+          {
+            "name": "NestJS",
+            "note": "Modular monoliths"
+          },
+          {
+            "name": "Node.js",
+            "note": "Runtime"
+          },
+          {
+            "name": "REST",
+            "note": "OpenAPI"
+          },
+          {
+            "name": "Socket.IO",
+            "note": "Realtime"
+          },
+          {
+            "name": "Zod",
+            "note": "Runtime validation"
+          },
+          {
+            "name": "BullMQ",
+            "note": "Queues / jobs"
+          }
+        ]
+      },
+      {
+        "label": "Data",
+        "items": [
+          {
+            "name": "PostgreSQL",
+            "note": "Primary store"
+          },
+          {
+            "name": "Prisma",
+            "note": "Typed ORM"
+          },
+          {
+            "name": "Redis",
+            "note": "Cache · pub/sub"
+          },
+          {
+            "name": "SQL",
+            "note": "Indexes · CTEs"
+          }
+        ]
+      },
+      {
+        "label": "Platform",
+        "items": [
+          {
+            "name": "Docker",
+            "note": "Containerization"
+          },
+          {
+            "name": "GitHub Actions",
+            "note": "CI/CD"
+          },
+          {
+            "name": "Vercel",
+            "note": "Edge deploys"
+          },
+          {
+            "name": "Observability",
+            "note": "Logs · metrics"
+          }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Modern full stack engineering",
+    "titlePrimary": "Let's build",
+    "titleAccent": "scalable systems.",
+    "description": "Working on something ambitious? I'm always happy to talk architecture, hiring, or how I can help your team ship faster.",
+    "ctas": [
+      {
+        "label": "hello@juancanul.dev",
+        "href": "mailto:canulpasosjuanjose@gmail.com",
+        "variant": "primary",
+        "icon": "Mail"
+      },
+      {
+        "label": "Download Resume",
+        "href": "/resume.pdf",
+        "variant": "outline",
+        "icon": "Download",
+        "external": true
+      }
+    ],
+    "channels": [
+      {
+        "icon": "Mail",
+        "label": "Email",
+        "value": "hello@juancanul.dev",
+        "href": "mailto:canulpasosjuanjose@gmail.com"
+      },
+      {
+        "icon": "Linkedin",
+        "label": "LinkedIn",
+        "value": "Juan Canul",
+        "href": "www.linkedin.com/in/juanjosecanulpasos"
+      },
+      {
+        "icon": "Github",
+        "label": "GitHub",
+        "value": "Juanexgo",
+        "href": "https://github.com/Juanexgo"
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Full Stack Software Engineer",
+    "status": "All systems operational",
+    "copyright": "© {year} Juan Canul · Crafted with Next.js, Tailwind & Framer Motion.",
+    "socials": [
+      {
+        "label": "Email",
+        "href": "mailto:hello@juancanul.dev",
+        "icon": "Mail"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/juancanul",
+        "icon": "Github"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/in/juancanul",
+        "icon": "Linkedin"
+      }
+    ]
+  }
+}
