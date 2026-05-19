@@ -1373,12 +1373,9 @@ function ContactEditor({
       </Field>
 
       <SubsectionTitle title="Resume PDF" />
-      <ResumeUpload
-        currentUrl="/resume.pdf"
-        hint="Any CTA whose href is /resume.pdf will serve the new file."
-        linkedTargets={value.ctas
-          .filter((cta) => cta.href === "/resume.pdf")
-          .map((cta) => cta.label || cta.href)}
+      <ContactResumeUpload
+        value={value}
+        onChange={onChange}
       />
 
       <SubsectionTitle title="CTA buttons" />
@@ -1492,6 +1489,44 @@ function FooterEditor({
         subtitleFor={(s) => s.href}
       />
     </Section>
+  );
+}
+
+/* ---------- Contact-aware resume upload ---------- */
+
+function ContactResumeUpload({
+  value,
+  onChange,
+}: {
+  value: PortfolioContent["contact"];
+  onChange: (v: PortfolioContent["contact"]) => void;
+}) {
+  // Pick a representative current URL: the most common href among
+  // resume-looking CTAs, falling back to the conventional /resume.pdf.
+  const resumeCandidates = React.useMemo(() => {
+    const looksLikeResume = (href: string) =>
+      href.toLowerCase().endsWith(".pdf") ||
+      /resume|cv/i.test(href);
+    return value.ctas.filter((c) => looksLikeResume(c.href));
+  }, [value.ctas]);
+
+  const currentUrl =
+    resumeCandidates[0]?.href ?? "/resume.pdf";
+
+  return (
+    <ResumeUpload
+      currentUrl={currentUrl}
+      linkedTargets={resumeCandidates.map((c) => c.label || c.href)}
+      onUploaded={(newUrl) => {
+        // Rewrite every CTA that pointed at the previous resume URL so the
+        // user doesn't have to re-link by hand when the path changes
+        // (e.g. moving from /resume.pdf to a Vercel Blob URL).
+        const nextCtas = value.ctas.map((cta) =>
+          cta.href === currentUrl ? { ...cta, href: newUrl } : cta
+        );
+        onChange({ ...value, ctas: nextCtas });
+      }}
+    />
   );
 }
 

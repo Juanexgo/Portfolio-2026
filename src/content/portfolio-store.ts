@@ -2,21 +2,30 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 
+import { head, list, put } from "@vercel/blob";
+
 import type { PortfolioContent } from "@/src/types/portfolio";
 import { portfolioContent as defaultContent } from "./portfolio";
 
 /**
- * Runtime overlay produced by the admin editor.
+ * Dual-mode runtime store for portfolio content.
  *
- * `portfolio.ts` holds the code-authored defaults (and is also the seed used
- * the first time the editor is opened). This JSON file becomes the live
- * source of truth once the user clicks **Save** in /admin.
+ * - **Local dev** (`BLOB_READ_WRITE_TOKEN` unset): reads / writes the JSON
+ *   overlay at `src/content/portfolio.json`. Same as before — instant, no
+ *   network.
+ * - **Production** (Vercel Blob configured): reads / writes a blob at
+ *   `portfolio/content.json`. Saves are instant and survive across the
+ *   serverless filesystem reset that happens on every cold start.
  *
- * It is intentionally not gitignored: committing it is how saved content
- * makes it to production (filesystems on most hosts are read-only at runtime,
- * so saves only succeed locally — `git push` is the deploy step).
+ * `portfolio.ts` remains the seed: if neither source has data yet, the
+ * default object literal is used.
  */
-const STORE_PATH = path.join(process.cwd(), "src/content/portfolio.json");
+
+const LOCAL_STORE_PATH = path.join(
+  process.cwd(),
+  "src/content/portfolio.json"
+);
+const BLOB_KEY = "portfolio/content.json";
 
 const TOP_LEVEL_KEYS: ReadonlyArray<keyof PortfolioContent> = [
   "personal",
@@ -35,36 +44,95 @@ const TOP_LEVEL_KEYS: ReadonlyArray<keyof PortfolioContent> = [
 function isValidShape(value: unknown): value is PortfolioContent {
   if (!value || typeof value !== "object") return false;
   const record = value as Record<string, unknown>;
-  return TOP_LEVEL_KEYS.every((key) => key in record && typeof record[key] === "object");
+  return TOP_LEVEL_KEYS.every(
+    (key) => key in record && typeof record[key] === "object"
+  );
+}
+
+function blobConfigured(): boolean {
+  return !!process.env.BLOB_READ_WRITE_TOKEN;
+}
+
+async function readFromBlob(): Promise<PortfolioContent | null> {
+  try {
+    // `head` does not expose content; we need to find the blob URL via list
+    // (cached by Next so it's cheap) and then fetch it.
+    const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 });
+    const blob = blobs.find((b) => b.pathname === BLOB_KEY);
+    if (!blob) return null;
+    const res = await fetch(blob.url, {
+      // Skip the Next data cache: we revalidate manually after every save.
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const parsed = (await res.json()) as unknown;
+    return isValidShape(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function readFromLocalFile(): PortfolioContent | null {
+  try {
+    const raw = fs.readFileSync(LOCAL_STORE_PATH, "utf8");
+    const parsed = JSON.parse(raw) as unknown;
+    return isValidShape(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
  * Returns the live portfolio content.
  *
- * Order of precedence:
- *   1. JSON overlay written by the admin editor (if present and valid).
- *   2. The default object literal from `portfolio.ts`.
+ * Precedence:
+ *   1. Vercel Blob overlay (when configured).
+ *   2. Local JSON overlay (dev).
+ *   3. Default object literal from `portfolio.ts`.
  */
-export function getPortfolioContent(): PortfolioContent {
-  try {
-    const raw = fs.readFileSync(STORE_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-    if (isValidShape(parsed)) return parsed;
-  } catch {
-    // ENOENT (no overlay yet) or invalid JSON — fall back to defaults.
+export async function getPortfolioContent(): Promise<PortfolioContent> {
+  if (blobConfigured()) {
+    const remote = await readFromBlob();
+    if (remote) return remote;
   }
+  const local = readFromLocalFile();
+  if (local) return local;
   return defaultContent;
 }
 
-/** Persist the given content to the overlay JSON file. Throws on I/O error. */
-export function savePortfolioContent(content: PortfolioContent): void {
+async function writeToBlob(content: PortfolioContent): Promise<void> {
+  await put(BLOB_KEY, JSON.stringify(content, null, 2) + "\n", {
+    access: "public",
+    contentType: "application/json",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+  });
+}
+
+function writeToLocalFile(content: PortfolioContent): void {
+  fs.mkdirSync(path.dirname(LOCAL_STORE_PATH), { recursive: true });
+  fs.writeFileSync(
+    LOCAL_STORE_PATH,
+    JSON.stringify(content, null, 2) + "\n",
+    "utf8"
+  );
+}
+
+/** Persist the given content to the active store. Throws on I/O error. */
+export async function savePortfolioContent(
+  content: PortfolioContent
+): Promise<void> {
   if (!isValidShape(content)) {
     throw new Error("Invalid portfolio content shape.");
   }
-  const dir = path.dirname(STORE_PATH);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(STORE_PATH, JSON.stringify(content, null, 2) + "\n", "utf8");
+  if (blobConfigured()) {
+    await writeToBlob(content);
+    return;
+  }
+  writeToLocalFile(content);
 }
 
-/** Path of the overlay file, exposed for diagnostics / display. */
-export const PORTFOLIO_STORE_PATH = STORE_PATH;
+/** Whether the runtime is using Vercel Blob vs the local filesystem. */
+export function getStoreMode(): "blob" | "local" {
+  return blobConfigured() ? "blob" : "local";
+}

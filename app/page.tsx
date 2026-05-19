@@ -10,8 +10,8 @@ import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { getPortfolioContent } from "@/src/content/portfolio-store";
 
-export default function Home() {
-  const c = getPortfolioContent();
+export default async function Home() {
+  const c = await getPortfolioContent();
   return (
     <main className="relative min-h-screen overflow-x-clip">
       <Nav content={c.nav} />

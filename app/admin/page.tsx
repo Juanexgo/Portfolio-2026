@@ -19,5 +19,5 @@ export default async function AdminPage() {
   if (!(await isAdminAuthed())) {
     return <LoginForm configured={adminPasswordConfigured()} />;
   }
-  return <AdminEditor initialContent={getPortfolioContent()} />;
+  return <AdminEditor initialContent={await getPortfolioContent()} />;
 }

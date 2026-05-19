@@ -3,6 +3,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import { put } from "@vercel/blob";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -75,14 +76,14 @@ export async function saveContentAction(
   }
 
   try {
-    savePortfolioContent(content);
+    await savePortfolioContent(content);
   } catch (err) {
     return {
       ok: false,
       error:
         err instanceof Error
           ? err.message
-          : "Failed to write portfolio content to disk.",
+          : "Failed to write portfolio content.",
     };
   }
 
@@ -94,6 +95,7 @@ export async function saveContentAction(
 
 const RESUME_PUBLIC_PATH = "/resume.pdf";
 const RESUME_DISK_PATH = path.join(process.cwd(), "public", "resume.pdf");
+const RESUME_BLOB_KEY = "portfolio/resume.pdf";
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5MB
 
 export type UploadResumeState = {
@@ -137,17 +139,31 @@ export async function uploadResumeAction(
     return { ok: false, error: "Only PDF files are accepted." };
   }
 
+  const useBlob = !!process.env.BLOB_READ_WRITE_TOKEN;
+  let publicUrl: string;
+
   try {
     const bytes = Buffer.from(await file.arrayBuffer());
-    await fs.mkdir(path.dirname(RESUME_DISK_PATH), { recursive: true });
-    await fs.writeFile(RESUME_DISK_PATH, bytes);
+    if (useBlob) {
+      const blob = await put(RESUME_BLOB_KEY, bytes, {
+        access: "public",
+        contentType: "application/pdf",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+      });
+      publicUrl = blob.url;
+    } else {
+      await fs.mkdir(path.dirname(RESUME_DISK_PATH), { recursive: true });
+      await fs.writeFile(RESUME_DISK_PATH, bytes);
+      publicUrl = RESUME_PUBLIC_PATH;
+    }
   } catch (err) {
     return {
       ok: false,
       error:
         err instanceof Error
           ? err.message
-          : "Failed to write resume file to disk.",
+          : "Failed to write resume file.",
     };
   }
 
@@ -155,5 +171,5 @@ export async function uploadResumeAction(
   revalidatePath("/", "layout");
   revalidatePath(RESUME_PUBLIC_PATH);
 
-  return { ok: true, url: RESUME_PUBLIC_PATH, size: file.size };
+  return { ok: true, url: publicUrl, size: file.size };
 }
