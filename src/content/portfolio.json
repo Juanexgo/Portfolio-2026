@@ -330,9 +330,7 @@
           "TypeScript",
           "PostgreSQL",
           "Tailwind"
-        ],
-        "liveUrl": "https://pos-cuchitas.vercel.app/sign-in",
-        "repoUrl": "https://github.com/Juanexgo/POS-Cuchitas"
+        ]
       },
       {
         "id": "pos",
