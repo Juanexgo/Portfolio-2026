@@ -375,7 +375,9 @@
           "PostgreSQL",
           "Socket.IO",
           "Docker"
-        ]
+        ],
+        "liveUrl": "https://pos-cuchitas.vercel.app/sign-in",
+        "repoUrl": "https://github.com/Juanexgo/POS-Cuchitas"
       }
     ]
   },
