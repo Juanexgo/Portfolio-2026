@@ -330,7 +330,9 @@
           "TypeScript",
           "PostgreSQL",
           "Tailwind"
-        ]
+        ],
+        "repoUrl": "https://github.com/Juanexgo/cel-reception",
+        "liveUrl": "https://cel-reception.vercel.app/login"
       },
       {
         "id": "pos",
